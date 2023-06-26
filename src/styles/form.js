@@ -3,9 +3,9 @@ import {styled, css } from "styled-components";
 export const DefaultInputStyle = css`
     background-color: var(--color-grey-2);
     border-radius: 3px;
-    height: 40px;
+    height: 2.5rem;
     width:100%;
-    padding-left: 15px;
+    padding-left: 0.9375rem;
 
     &::placeholder{
         color: var(--color-grey-1)
@@ -15,6 +15,7 @@ export const DefaultInputStyle = css`
 export const StyledForm = styled.form`
     background-color: var(--color-grey-3);
     overflow-y: auto;
+    border-radius: 0.3125rem;
    > div{
         display: flex;
         flex-direction: column;
@@ -26,7 +27,7 @@ export const StyledForm = styled.form`
     > div > div{
         display: flex;
         justify-content: center;
-        padding:15px;
+        padding:0.9375rem;
 
         > h2{
             color: var(--color-grey-0);
@@ -39,7 +40,7 @@ export const StyledForm = styled.form`
     > div > p{
         color:var(--color-grey-1);
         font-weight: 600;
-        font-size:10px;
+        font-size:0.625rem;
     }
 
     >div> label{
