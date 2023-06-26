@@ -7,28 +7,17 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginFormSchema } from "./loginFormSchema"
+import { useContext } from "react";
+import { UserContext } from "../../providers/userContext"
 
-export const Login = ({user,setUser}) => {
+export const Login = () => {
     const {register, handleSubmit,formState:{errors}, reset} = useForm({
         resolver: zodResolver(loginFormSchema)
     })
 
+    const {loginUser} = useContext(UserContext);
+
     const navigate =  useNavigate()
-
-    const loginUser = async (formData) =>{
-
-        try{
-            const logar = await api.post('/sessions', formData)
-            navigate("/dashboard")
-            const data = logar.data;
-            setUser(data.user)
-            localStorage.setItem('userID', JSON.stringify(data.user.id));
-            localStorage.setItem('token', JSON.stringify(data.token));
-
-        }catch{
-
-        }
-    }
 
     const submit = (formData) => {
         loginUser(formData)
@@ -47,7 +36,7 @@ export const Login = ({user,setUser}) => {
                         <StyledInput placeholder="Digite aqui seu email" type="text" name="email" required {...register("email")}/>
                         {errors.email?.message}
                         <label for="password">Senha</label>
-                        <StyledInput placeholder="Digite aqui sua senha" type="text" name="password-input"  {...register("password")} required/>
+                        <StyledInput placeholder="Digite aqui sua senha" type="password" name="password-input"  {...register("password")} required/>
                         {errors.password?.message}
                         <StyledButton backgroundColor="default" height ="medium" type="submit">Entrar</StyledButton>
 

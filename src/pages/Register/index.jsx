@@ -3,13 +3,14 @@ import { GridContainer } from "../../styles/grid"
 import { StyledButton } from "../../styles/buttons"
 import { ContainerRegister } from "../Register/styles"
 import { useForm } from "react-hook-form"
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { api } from "../../services/api"
 import { useNavigate } from "react-router-dom"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerFormSchema } from "./registerFormSchema"
+import { UserContext } from "../../providers/userContext"
 
-export const Register = ({notifySuccess,notifyFail}) => {
+export const Register = () => {
 
     const {register, handleSubmit,formState:{errors}, reset} = useForm({
         resolver: zodResolver(registerFormSchema)
@@ -17,16 +18,7 @@ export const Register = ({notifySuccess,notifyFail}) => {
 
     const navigate = useNavigate();
 
-    const registerUser = async (formData)=>{
-        try{
-            const postUser = await api.post('/users', formData)
-            notifySuccess();
-        }
-        catch{
-            notifyFail();
-        }
-
-    }
+   const {registerUser} = useContext(UserContext)
 
 
     const submit = (formData)=>{
@@ -79,6 +71,11 @@ export const Register = ({notifySuccess,notifyFail}) => {
                             <StyledSelect name="course_module" {...register("course_module")}>
                                 <option value="">Selecione</option>
                                 <option value="Primeiro módulo">Primeiro módulo</option>
+                                <option value="Segundo módulo">Segundo módulo</option>
+                                <option value="Terceiro módulo">Terceiro módulo</option>
+                                <option value="Quarto módulo">Quarto módulo</option>
+                                <option value="Quinto módulo">Quinto módulo</option>
+                                <option value="Sexto módulo">Sexto módulo</option>
                             </StyledSelect>
 
                             <StyledButton backgroundColor="default" height ="medium" type="submit">Cadastrar</StyledButton>

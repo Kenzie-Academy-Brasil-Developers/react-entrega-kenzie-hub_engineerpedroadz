@@ -1,7 +1,7 @@
 import {z} from "zod"
 
 export const registerFormSchema = z.object({
-    name: z.string().min(3),
+    name: z.string().min(3,"No mínimo três caracteres"),
     course_module: z.string(),
     email: z.string().email("Email inválido"),
     contact: z.string().min(3),

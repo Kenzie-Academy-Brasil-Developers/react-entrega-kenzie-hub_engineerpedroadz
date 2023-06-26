@@ -4,17 +4,14 @@ import { Register } from "../pages/Register"
 import { Login } from "../pages/Login"
 import { useState } from "react"
 
-export const RoutesMain = ({notifySuccess,notifyFail}) => {
+export const RoutesMain = () => {
 
-    const [user, setUser] = useState(null);
 
     return(
         <Routes>
-            <Route path="/" element={<Login user={user} setUser={setUser}/>}></Route>
-            <Route path="/dashboard" element={<HomePage user={user}/>}></Route>
-            <Route path="/register" element={<Register 
-            notifySuccess={notifySuccess}
-            notifyFail={notifyFail} />} ></Route>
+            <Route path="/" element={<Login/>}></Route>
+            <Route path="/dashboard" element={<HomePage/>}></Route>
+            <Route path="/register" element={<Register/>} ></Route>
         </Routes>
     )
 }
